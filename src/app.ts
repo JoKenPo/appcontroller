@@ -9,7 +9,7 @@ class App {
     this.express = express()
 
     this.middlewares()
-    this.database()
+    // this.database()
     this.routes()
   }
 
@@ -25,9 +25,7 @@ class App {
   }
 
   private routes (): void {
-    this.express.get('/', (req, res) => {
-      return res.send('Hello World')
-    })
+    this.express.use(require('./routes'));
   }
 }
 
