@@ -12,6 +12,12 @@ require('dotenv').config({
 // Logging
 // routes.use(morgan('dev'));
 
+// Remove cache
+routes.use((req, res, next) => {
+  res.set('Cache-Control', 'no-store')
+  next()
+})
+
 // Info
 routes.get('/info', (req, res, next) => {
   res.send('This is a proxy controller which proxies to MercadoLibre API.');
@@ -23,19 +29,18 @@ routes.get('/list', AccessController.index);
 // GET
 routes.get('/criar', AccessController.store);
 
-// Proxy endpoints
-routes.use('/api/xxx', async (req, res, next) => {
-  console.log(req.connection.remoteAddress)
-  console.log(req.url)
-  console.log(req.method.replace('/api/ml', ''))
 
+// Proxy endpoints
+routes.use('/api/proxy',AccessController.store)
+
+routes.use('/api/proxy', 
   createProxyMiddleware({
     target: process.env.APP_API_SERVICE_URL,
     changeOrigin: true,
     pathRewrite: {
-      [`^/api/xxx`]: '',
-    },
+      [`^/api/proxy`]: '',
+    }
   })
-});
+)
 
 module.exports = routes;
