@@ -51,3 +51,7 @@ API utiliza mongoose como DB e SQLite em teste;
 Construção de bancos com sequelize;
 
 ### Melhorias
+
+- Testes unitários
+
+- Utilizar Swagger para uma documentação mais amigavel
