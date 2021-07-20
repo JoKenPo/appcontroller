@@ -26,10 +26,6 @@ routes.get('/info', (req, res, next) => {
 // GET
 routes.get('/list', AccessController.index);
 
-// GET
-routes.get('/criar', AccessController.store);
-
-
 // Proxy endpoints
 routes.use('/api/proxy',AccessController.store)
 
