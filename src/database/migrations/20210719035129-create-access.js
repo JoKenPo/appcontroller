@@ -2,7 +2,7 @@
 
 module.exports = {
   up: async (queryInterface, Sequelize) => {
-    return queryInterface.createTable('access', {
+    return queryInterface.createTable('accesses', {
       id: {
         type: Sequelize.INTEGER,
         primaryKey: true,
@@ -15,7 +15,10 @@ module.exports = {
       },
       path: {
         type: Sequelize.STRING,
-        unique: true,
+        allowNull: false
+      },
+      method: {
+        type: Sequelize.STRING,
         allowNull: false
       },
       created_at: {
